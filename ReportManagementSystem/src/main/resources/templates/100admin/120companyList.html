@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+     layout:decorator="~{commons/layout}">
+<head>
+  <title>日報管理システム</title>
+</head>
+<body>
+<div layout:fragment="commons/header">ヘッダー</div>
+<div layout:fragment="commons/menu">メニュー</div>
+<div layout:fragment="contents" id="content">
+<div class="box">
+<h3>企業管理</h3>
+ 	<p th:text="${msg}"></p>
+ 	<div>
+	 	<form role="form" id="newCompanyCreate" th:action="@{/newCompanyCreate}" method="post">
+	 		<button type="submit" class="menuBtn">新規企業登録</button>
+		</form>
+	</div>
+ 	<table>
+ 		<tr class="hd2">
+ 			<th>No.</th>
+ 			<th>企業コード</th>
+ 			<th>企業名</th>
+ 			<th sec:authorize="hasRole('ADMIN')">企業情報変更</th>
+ 		</tr>
+ 		<tr th:each="company,cnt:${companyList}" class="row">
+ 			<td th:text="${cnt.count}" class="c0"/>
+ 			<td th:text="${company.companycode}" class="c4"/>
+ 			<td th:text="${company.companyname}" class="c3"/>
+ 			<td><form th:action="@{'/companyUpdate/'+${company.companycode}}" method="post"><button type="submit" id="upd" class="">変更</button></form></td>
+ 		</tr>
+ 	</table>
+</div>
+</div>
+<div layout:fragment="commons/footer">フッター</div>
+</body>
+</html>

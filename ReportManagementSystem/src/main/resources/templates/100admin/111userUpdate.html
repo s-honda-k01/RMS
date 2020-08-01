@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+     layout:decorator="~{commons/layout}">
+<head>
+  <title>日報管理システム</title>
+</head>
+<body>
+<div layout:fragment="commons/header">ヘッダー</div>
+<div layout:fragment="commons/menu">メニュー</div>
+<div layout:fragment="contents" id="content">
+<div class="box">
+<h3>ユーザ情報変更</h3>
+ 	<p th:text="${msg}"></p>
+ 	<form role="form" id="userUpdateConf" th:action="@{/userUpdateConf}" th:object="${formModel}" method="post">
+ 		<table>
+ 			<tr>
+ 				<th>ユーザコード</th>
+ 				<td class="left" th:text="*{usercode}"/>
+ 			</tr>
+ 			<tr>
+ 				<th>姓</th>
+ 				<td><input type="text" name="lastname" th:value="*{lastname}" th:errorcless="err" placeholder="1～ 15文字"></td>
+ 				<td><div th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}" th:errorclass="err"></div></td>
+ 			</tr>
+ 			<tr>
+ 				<th>名</th>
+ 				<td><input type="text" name="firstname" th:value="*{firstname}" th:errorcless="err" placeholder="1～ 15文字"></td>
+ 				<td><div th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}" th:errorclass="err"></div></td>
+ 			</tr>
+ 			<tr>
+ 				<th>所属企業</th>
+ 				<td>
+ 					<select id="mtCompany" name="mtCompany" size="1">
+ 						<option th:each="company:${companyList}" th:value="${company.companycode}" th:inline="text" th:selected="${company.companycode}==*{mtCompany.companycode}">[[${company.companyname}]]</option>
+ 					</select>
+ 				</td>
+ 			</tr>
+ 			<tr>
+ 				<th>ロール</th>
+ 				<td>
+ 					<select id="mtRole" name="mtRole" size="1">
+ 						<option th:each="role:${roleList}" th:value="${role.rolecode}" th:inline="text" th:selected="${role.rolecode}==*{mtRole.rolecode}">[[${role.rolename}]]</option>
+ 					</select>
+ 				</td>
+ 			</tr>
+ 		</table>
+ 		<button type="submit" class="menuBtn">変更確認へ</button>
+ 	</form>
+</div>
+</div>
+<div layout:fragment="commons/footer">フッター</div>
+</body>
+</html>

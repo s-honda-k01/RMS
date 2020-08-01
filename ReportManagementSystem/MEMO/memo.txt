@@ -1,0 +1,40 @@
+2020/7/30
+visual c++ 2019 再頒布可能パッケージをダウンロードして、インストールする
+MYSQLインストール
+rootでログイン
+mysqlでデータベース作成する(create database rmsdb;)
+MYSQLでユーザ作成する(create user rms@localhost identified by rms;)
+権限付与する(grant all on rmsdb.* to rms@localhost;)
+
+ER図作成する
+DDLをエクスポートする
+AUTO_INCREMENTするカラムは、DEFAULT値を設定してはいけない
+AUTO_INCREMENTを使う場合、主キー制約はALTERでなく、CREATE TABLE内に含めなければならない
+
+rms@localhostでMySQLにログインする
+DDLを流し込む
+com.pci.securityパッケージを作る
+UserAccountクラスを実装する
+
+2020/7/31
+DBにデータをinsertする
+application.propertiesに、データベースの情報を記載する
+
+ログイン機能を作成する
+
+管理者機能を作成する
+・ユーザ管理(SELECT、UPDATE、CREATE)
+・企業管理(SELECT、UPDATE、CREATE)
+
+パスワード変更するときはどうしたらいいのだろうか?
+管理者が他のユーザのパスワード変更できるのはまずいと思う。
+よくてパスワードリセットかな。
+
+2020/8/1
+パスワード変更機能を作成した。
+今は管理者だけが変更できる。(TRAINER,STUDENT,CUSTOMERでは未確認)
+STUDENT機能を作成して、確認しよう。
+・日報作成機能
+・日報閲覧機能
+・日報修正機能
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+     layout:decorator="~{commons/layout}">
+<head>
+  <title>弁当注文システム</title>
+</head>
+<body>
+<div layout:fragment="commons/header">ヘッダー</div>
+<div layout:fragment="commons/menu">メニュー</div>
+<div layout:fragment="contents" id="content">
+<div class="box">
+<h3>新規顧客登録確認</h3>
+ 	<form role="form" id="customerReg" th:action="@{/customerReg}" th:object="${formModel}" method="post">
+ 	<input type="hidden" name="formModel" th:value="${formModel}"/>
+ 		<table>
+ 			<tr>
+ 				<th>顧客コード</th>
+ 				<td class="left" th:text="*{userCode}"/>
+ 			</tr>
+ 			<tr>
+ 				<th>顧客名</th>
+ 				<td class="left" th:text="*{userName}"/>
+ 			</tr>
+ 			<tr>
+ 				<th>パスワード</th>
+ 				<td class="left" th:text="*{password}"/>
+ 			</tr>
+ 			 <tr>
+ 				<th>注文可否</th>
+ 				<td class="left"><div th:if="*{validity}">可</div><div th:unless="*{validity}">不可</div></td>
+ 			</tr>
+ 		</table>
+ 		<button type="submit" class="menuBtn">登録する</button>
+ 	</form>
+</div>
+</div>
+<div layout:fragment="commons/footer">フッター</div>
+</body>
+</html>

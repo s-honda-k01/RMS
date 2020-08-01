@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+     layout:decorator="~{commons/layout}">
+<head>
+  <title>日報管理システム</title>
+</head>
+<body>
+<div layout:fragment="commons/header">ヘッダー</div>
+<div layout:fragment="commons/menu">メニュー</div>
+<div layout:fragment="contents" id="content">
+<div class="box">
+<h3>新規ユーザ登録</h3>
+ 	<p th:text="${msg}"></p>
+ 	<form role="form" id="newCustomerCreateConf" th:action="@{/newCustomerCreateConf}" th:object="${formModel}" method="post">
+ 		<table>
+ 			<tr>
+ 				<th>顧客コード</th>
+ 				<td><input type="text" name="userCode" th:value="*{userCode}" th:errorcless="err" placeholder="4文字(例：c001)"></td>
+ 				<td><div th:if="${#fields.hasErrors('userCode')}" th:errors="*{userCode}" th:errorclass="err"></div></td>
+ 			</tr>
+ 			<tr>
+ 				<th>顧客名</th>
+ 				<td><input type="text" name="userName" th:value="*{userName}" th:errorcless="err" placeholder="1～ 15文字"></td>
+ 				<td><div th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" th:errorclass="err"></div></td>
+ 			</tr>
+ 			<tr>
+ 				<th>パスワード</th>
+ 				<td><input type="password" name="password" th:value="*{password}" th:errorcless="err"></td>
+ 				<td><div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" th:errorclass="err"></div></td>
+ 			</tr>
+ 			<tr>
+ 				<th>注文可否</th>
+ 				<td>
+ 				<select id="validity" name="validity" size="1">
+	 					<option th:value="true">可</option>
+	 					<option th:value="false">不可</option>
+	 				</select>
+ 				</td>
+ 			</tr>
+ 		</table>
+ 		<button type="submit" class="menuBtn">登録確認へ</button>
+ 	</form>
+</div>
+</div>
+<div layout:fragment="commons/footer">フッター</div>
+</body>
+</html>

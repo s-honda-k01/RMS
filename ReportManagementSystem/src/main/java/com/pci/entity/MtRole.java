@@ -26,6 +26,11 @@ public class MtRole implements Serializable {
 
 	public MtRole() {
 	}
+	
+	public MtRole(String rolecode, String rolename) {
+		this.rolecode = rolecode;
+		this.rolename = rolename;
+	}
 
 	public String getRolecode() {
 		return this.rolecode;

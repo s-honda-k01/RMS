@@ -41,8 +41,25 @@ public class MtUser implements Serializable {
 	//bi-directional many-to-one association to TrDailyreport
 	@OneToMany(mappedBy="mtUser2")
 	private List<TrDailyreport> trDailyreports2;
+	
+	@Transient
+	private String currentPassword;
+	@Transient
+	private String newPassword;
+	@Transient
+	private String newPasswordAgain;
 
 	public MtUser() {
+	}
+	
+	public MtUser(String usercode, String lastname, String firstname, String password, MtCompany mtCompany,
+			MtRole mtRole) {
+		this.usercode = usercode;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.password = password;
+		this.mtCompany = mtCompany;
+		this.mtRole = mtRole;
 	}
 
 	public String getUsercode() {
@@ -137,4 +154,27 @@ public class MtUser implements Serializable {
 		return trDailyreports2;
 	}
 
+	public String getCurrentPassword() {
+		return currentPassword;
+	}
+
+	public void setCurrentPassword(String currentPassword) {
+		this.currentPassword = currentPassword;
+	}
+
+	public String getNewPassword() {
+		return newPassword;
+	}
+
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
+	}
+
+	public String getNewPasswordAgain() {
+		return newPasswordAgain;
+	}
+
+	public void setNewPasswordAgain(String newPasswordAgain) {
+		this.newPasswordAgain = newPasswordAgain;
+	}
 }

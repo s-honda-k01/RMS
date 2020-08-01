@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+     layout:decorator="~{commons/layout}">
+<head>
+  <title>日報管理システム</title>
+</head>
+<body>
+<div layout:fragment="commons/header">ヘッダー</div>
+<div layout:fragment="commons/menu">メニュー</div>
+<div layout:fragment="contents" id="content">
+<div class="box">
+<h3>ユーザ管理</h3>
+ 	<p th:text="${msg}"></p>
+ 	<div>
+	 	<form role="form" id="newUserCreate" th:action="@{/newUserCreate}" method="post">
+	 		<button type="submit" class="menuBtn">新規ユーザ登録</button>
+		</form>
+	</div>
+ 	<table>
+ 		<tr class="hd2">
+ 			<th>No.</th>
+ 			<th>ユーザコード</th>
+ 			<th>姓</th>
+ 			<th>名</th>
+ 			<th>所属</th>
+ 			<th>ロール</th>
+ 			<th sec:authorize="hasRole('ADMIN')">ユーザ情報変更</th>
+ 			<th sec:authorize="hasRole('ADMIN')">パスワードリセット</th>
+ 		</tr>
+ 		<tr th:each="user,cnt:${userList}" class="row">
+ 			<td th:text="${cnt.count}" class="c0"/>
+ 			<td th:text="${user.usercode}" class="c4"/>
+ 			<td th:text="${user.lastname}" class="c3"/>
+ 			<td th:text="${user.firstname}" class="c3"/>
+ 			<td th:text="${user.mtCompany.companyname}" class="c3"/>
+ 			<td th:text="${user.mtRole.rolename}" class="c3"/>
+ 			<td><form th:action="@{'/userUpdate/'+${user.usercode}}" method="post"><button type="submit" id="upd" class="">変更</button></form></td>
+ 			<td><form th:action="@{'/passwordReset/'+${user.usercode}}" method="post"><button type="submit" id="upd" class="">リセット</button></form></td>
+ 		</tr>
+ 	</table>
+</div>
+</div>
+<div layout:fragment="commons/footer">フッター</div>
+</body>
+</html>

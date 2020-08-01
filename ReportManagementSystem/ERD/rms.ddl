@@ -9,10 +9,19 @@ CREATE TABLE MT_ROLE(
 		ROLENAME                      		VARCHAR(10)		 NOT NULL
 );
 
+insert into MT_ROLE values('1','ADMIN');
+insert into MT_ROLE values('2','TRAINER');
+insert into MT_ROLE values('3','STUDENT');
+insert into MT_ROLE values('4','CUSTOMER');
+
 CREATE TABLE MT_COMPANY(
 		COMPANYCODE                   		VARCHAR(4)		 NOT NULL		 PRIMARY KEY,
 		COMPANYNAME                   		VARCHAR(50)		 NOT NULL
 );
+
+insert into MT_COMPANY values('9999','PCIソリューションズ');
+insert into MT_COMPANY values('9998','sample2');
+insert into MT_COMPANY values('9997','sample1');
 
 CREATE TABLE MT_USER(
 		USERCODE                      		VARCHAR(8)		 NOT NULL		 PRIMARY KEY,
@@ -29,6 +38,10 @@ CREATE TABLE MT_REPORTSTATUS(
 		REPORTSTATUSCODE              		VARCHAR(2)		 NOT NULL		 PRIMARY KEY,
 		REPORTSTATUS                  		VARCHAR(10)		 NOT NULL
 );
+
+insert into mt_reportstatus values('1','未確認');
+insert into mt_reportstatus values('2','確認済');
+insert into mt_reportstatus values('3','要修正');
 
 CREATE TABLE TR_DAILYREPORT(
 		DAILYREPORTID                 		INT		 NOT NULL		 PRIMARY KEY AUTO_INCREMENT,
