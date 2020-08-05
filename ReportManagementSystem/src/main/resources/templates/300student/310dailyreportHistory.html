@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+     layout:decorator="~{commons/layout}">
+<head>
+  <title>日報管理システム</title>
+</head>
+<body>
+<div layout:fragment="commons/header">ヘッダー</div>
+<div layout:fragment="commons/menu">メニュー</div>
+<div layout:fragment="contents" id="content">
+<div class="box">
+<h3>日報履歴</h3>
+ 	<p th:text="${msg}"></p>
+ 	<form role="form" id="editDailyreport" th:action="@{/editDailyreport}" method="post">
+		<button type="submit" class="menuBtn">日報登録</button>
+	</form>
+ 	<table>
+ 		<tr class="hd2">
+ 			<th>日付</th>
+ 			<th>作業予定</th>
+ 			<th>実績</th>
+ 			<th>所感・問題点と対策</th>
+ 			<th>状況</th>
+ 		</tr>
+ 		<tr th:each="report:${dailyreportList}" class="row">
+ 			<td th:text="${report.regdate}" class="c4"/>
+ 			<td th:text="${report.plan}" class="c3"><p></p></td>
+ 			<td th:text="${report.result}" class="c3"><p></p></td>
+ 			<td th:text="${report.remark}" class="c3"><p></p></td>
+ 			<td th:text="${report.mtReportstatus.reportstatus}" class="c3"/>
+ 		</tr>
+ 	</table>
+</div>
+</div>
+<div layout:fragment="commons/footer">フッター</div>
+</body>
+</html>

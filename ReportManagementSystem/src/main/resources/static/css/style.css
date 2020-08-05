@@ -43,6 +43,15 @@ address{
     border-top: solid 1px #999;		/* ボーダーライン（上） */
 }
 
+textarea{
+	resize:none;
+	width: 240px;
+	height: 100px;
+}
+p{
+	white-space: pre-wrap;
+}
+
 .error{
     font-size: 0.9em;	/* エラーメッセージ用 */	
     font-weight: bold;

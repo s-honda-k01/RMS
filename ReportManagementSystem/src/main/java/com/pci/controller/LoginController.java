@@ -52,7 +52,7 @@ public class LoginController {
 					//mv.setViewName(viewName);
 					break;
 				}else if(ga.getAuthority().equals("ROLE_STUDENT")) {
-					//mv.setViewName(viewName);
+					mv.setViewName("forward:/dailyreportHistory");
 					break;
 				}else if(ga.getAuthority().equals("ROLE_CUSTOMER")){
 					//mv.setViewName(viewName);

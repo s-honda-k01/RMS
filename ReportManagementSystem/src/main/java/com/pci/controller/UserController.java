@@ -46,7 +46,7 @@ public class UserController {
 		return new MtUser();
 	}
 	
-	@RequestMapping(value="/userManagement",method=RequestMethod.GET)
+	@RequestMapping(value="/userManagement",method=RequestMethod.POST)
 	public ModelAndView usetList(ModelAndView mv,@AuthenticationPrincipal UserDetails userDetail) {
 		this.userDetail=userDetail;
 		mtUser=userRepository.findByUsercode(this.userDetail.getUsername()).get();

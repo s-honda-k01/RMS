@@ -11,7 +11,7 @@
 		<form role="form" id="logout" th:action="@{/companyManagement}" method="get" sec:authorize="hasRole('ADMIN')">
 			<button type="submit" class="menuBtn">会社管理</button>
 		</form>
-		<form role="form" id="logout" th:action="@{/userManagement}" method="get" sec:authorize="hasRole('ADMIN')">
+		<form role="form" id="logout" th:action="@{/userManagement}" method="post" sec:authorize="hasRole('ADMIN')">
 			<button type="submit" class="menuBtn">ユーザ管理</button>
 		</form>
 
@@ -19,8 +19,8 @@
 			<button type="submit" class="menuBtn">日報確認</button>
 		</form>
 
-		<form role="form" id="logout" th:action="@{/createDailyreport}" method="get" sec:authorize="hasRole('STUDENT')">
-			<button type="submit" class="menuBtn">日報作成</button>
+		<form role="form" id="logout" th:action="@{/editDailyreport}" method="post" sec:authorize="hasRole('STUDENT')">
+			<button type="submit" class="menuBtn">日報登録</button>
 		</form>
 		<form role="form" id="logout" th:action="@{/dailyreportHistory}" method="get" sec:authorize="hasRole('STUDENT')">
 			<button type="submit" class="menuBtn">日報履歴</button>

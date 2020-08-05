@@ -16,6 +16,7 @@ public class TrDailyreport implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int dailyreportid;
 
 	@Lob
@@ -44,8 +45,24 @@ public class TrDailyreport implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="TRAINERCODE")
 	private MtUser mtUser2;
+	
+	@Transient
+	private String regdateString;
 
 	public TrDailyreport() {
+	}
+
+	public TrDailyreport(Date regdate, MtUser mtUser1,String todayString) {
+		this.regdate = regdate;
+		this.mtUser1 = mtUser1;
+		this.regdateString= todayString;
+	}
+
+	
+	public TrDailyreport(MtUser mtUser1, String regdateString) {
+		this.mtUser1 = mtUser1;
+		this.regdateString = regdateString;
+		this.regdate=java.sql.Date.valueOf(regdateString);
 	}
 
 	public int getDailyreportid() {
@@ -110,6 +127,14 @@ public class TrDailyreport implements Serializable {
 
 	public void setMtUser2(MtUser mtUser2) {
 		this.mtUser2 = mtUser2;
+	}
+
+	public String getRegdateString() {
+		return regdateString;
+	}
+
+	public void setRegdateString(String regdateString) {
+		this.regdateString = regdateString;
 	}
 
 }
